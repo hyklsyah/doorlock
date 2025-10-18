@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Activity Log - Smart Lock System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/lock.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .logs-bg {
+      background-color: #f3f4f6;
+      background-image: url('https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-blend-mode: overlay;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+    .log-item {
+      transition: all 0.3s ease;
+    }
+    .log-item:hover {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+  </style>
+</head>
+<body class="font-poppins min-h-screen flex flex-col logs-bg">
+  
+  <nav class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-lock text-2xl"></i>
+        <span class="text-xl font-bold">Smart Lock System</span>
+      </div>
+      <ul class="flex space-x-6">
+        <li><a href="dashboard.html" class="hover:text-blue-200 transition-colors duration-200 flex items-center"><i class="fas fa-chart-line mr-1"></i> Dashboard</a></li>
+        <li><a href="logs.html" class="text-blue-200 flex items-center"><i class="fas fa-history mr-1"></i> Activity Log</a></li>
+        <li><a href="user.html" class="hover:text-blue-200 transition-colors duration-200 flex items-center"><i class="fas fa-users mr-1"></i> User Management</a></li>
+        <li>
+          <button data-logout class="hover:text-blue-200 transition-colors duration-200 flex items-center">
+            <i class="fas fa-sign-out-alt mr-1"></i> Logout
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="flex-grow p-6">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="glass-card p-6 rounded-xl mb-6">
+        <div class="flex justify-between items-center">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Activity Log</h1>
+            <p class="text-gray-600">Lacak semua aktivitas sistem.</p>
+          </div>
+          <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+              <span class="text-sm text-gray-600">Success</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
+              <span class="text-sm text-gray-600">Failed</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+              <span class="text-sm text-gray-600">Threat</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="glass-card p-6 rounded-xl mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="relative">
+            <input 
+              type="text" 
+              id="search-input"
+              placeholder="Search logs..." 
+              class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          
+          <select 
+            id="filter-method" 
+            class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all">All Methods</option>
+            <option value="website">Website</option>
+            <option value="fingerprint">Fingerprint & PIN</option>
+            <option value="pin-only">PIN Only (Threats)</option>
+          </select>
+
+          <select 
+            id="filter-status" 
+            class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all">All Status</option>
+            <option value="success">Success</option>
+            <option value="failed">Failed</option>
+            <option value="threat">Threat</option>
+          </select>
+
+          <select 
+            id="filter-date" 
+            class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all">All Time</option>
+            <option value="today">Today</option>
+            <option value="week">This Week</option>
+          </select>
+        </div>
+      </div>
+
+      
+      <div class="glass-card p-6 rounded-xl">
+        <div class="overflow-x-auto">
+          <table class="min-w-full">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Time</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">User</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Method</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Details</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Status</th>
+              </tr>
+            </thead>
+            <tbody id="logs-list">
+              <tr>
+                <td colspan="5" class="text-center py-8 text-gray-500">
+                  <i class="fas fa-spinner fa-spin text-3xl mb-4"></i>
+                  <p>Loading activity logs...</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        
+        <div class="text-center mt-6">
+          <button 
+            id="load-more-btn"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center mx-auto"
+          >
+            <i class="fas fa-sync-alt mr-2"></i>
+            Load More
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script src="firebase.js"></script>
+  <script src="auth.js"></script>
+  <script src="logs.js"></script>
+</body>
+</html>

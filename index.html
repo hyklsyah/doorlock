@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Lock System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/lock.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .hero-pattern {
+      background-color: rgba(0, 0, 0, 0.5);
+      background-image: url('https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  </style>
+  <script>
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      const isLoggedIn = localStorage.getItem('smartlock_auth');
+      if (isLoggedIn) {
+        window.location.href = 'dashboard.html';
+      }
+    });
+  </script>
+</head>
+<body class="font-poppins min-h-screen flex flex-col bg-gray-100">
+  
+  <nav class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-lock text-2xl"></i>
+        <span class="text-xl font-bold">Smart Lock System</span>
+      </div>
+      <div>
+        <a href="login.html" class="hover:text-blue-200 transition-colors duration-200 flex items-center">
+          <i class="fas fa-sign-in-alt mr-1"></i> Login
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <main class="flex-grow hero-pattern">
+    <div class="max-w-7xl mx-auto px-4 py-20 flex flex-col items-center justify-center min-h-[80vh] text-center">
+      <div class="glass-card p-8 rounded-2xl max-w-3xl mx-auto">
+        <h1 class="text-5xl font-bold mb-6 text-white leading-tight">
+          Welcome to Smart Lock System
+        </h1>
+        <p class="text-xl text-gray-100 mb-8 leading-relaxed">
+          Rasakan keamanan generasi berikutnya dengan sistem kontrol akses pintu pintar kami.
+Pantau, kelola, dan amankan ruang Anda dengan mudah.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="login.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center">
+            <i class="fas fa-sign-in-alt mr-2"></i> Login to Dashboard
+          </a>
+        </div>
+      </div>
+
+      
+      <div class="grid md:grid-cols-3 gap-6 mt-16 w-full">
+        <div class="glass-card p-6 rounded-xl text-white">
+          <i class="fas fa-shield-alt text-4xl mb-4 text-blue-400"></i>
+          <h3 class="text-xl font-semibold mb-2">Security</h3>
+          <p class="text-gray-200">Keamanan Ganda dengan Sidik Jari dan Pin.</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl text-white">
+          <i class="fas fa-history text-4xl mb-4 text-blue-400"></i>
+          <h3 class="text-xl font-semibold mb-2">Real-time Monitoring</h3>
+          <p class="text-gray-200">Pantau semua akses dan kelola izin pengguna secara instan.</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl text-white">
+          <i class="fas fa-mobile-alt text-4xl mb-4 text-blue-400"></i>
+          <h3 class="text-xl font-semibold mb-2">Remote Access</h3>
+          <p class="text-gray-200">Kontrol dan pantau sistem keamanan Anda dari mana saja, kapan saja
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p>&copy; 2024 Smart Lock System.</p>
+    </div>
+  </footer>
+</body>
+</html>
